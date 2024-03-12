@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
         print("No usuario");
         errorMessage = 'No se encontró un usuario con ese email.';
       } else if (e.code == 'wrong-password') {
-        errorMessage = 'Contraseña incorrecta proporcionada para ese usuario.';
+        errorMessage = 'Contraseña incorrecta';
         print("password mala pa");
       }
       ScaffoldMessenger.of(context).showSnackBar(
