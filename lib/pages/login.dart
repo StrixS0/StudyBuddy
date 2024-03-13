@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pia_moviles/register.dart';
+import 'package:pia_moviles/pages/register.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,12 +14,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -57,11 +61,9 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pop(context);
       var errorMessage = 'Ocurrió un error al iniciar sesión';
       if (e.code == 'user-not-found') {
-        print("No usuario");
         errorMessage = 'No se encontró un usuario con ese email.';
       } else if (e.code == 'wrong-password') {
         errorMessage = 'Contraseña incorrecta';
-        print("password mala pa");
       }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -76,26 +78,27 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
               Color.fromARGB(255, 47, 47, 47),
-              const Color.fromARGB(255, 204, 204, 204)
+              Color.fromARGB(255, 204, 204, 204)
             ],
           ),
         ),
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Icon(Icons.account_circle, size: 100.0, color: Colors.white),
-                  SizedBox(height: 48.0),
+                  const Icon(Icons.account_circle,
+                      size: 100.0, color: Colors.white),
+                  const SizedBox(height: 48.0),
                   TextField(
                     controller: emailController,
                     decoration: InputDecoration(
@@ -108,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   TextField(
                     controller: passwordController,
                     obscureText: true,
@@ -122,9 +125,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 24.0),
+                  const SizedBox(height: 24.0),
                   ElevatedButton(
-                    child: Text('Iniciar Sesión'),
                     onPressed: () => signUserIn(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
@@ -134,20 +136,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
                     ),
+                    child: const Text('Iniciar Sesión'),
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   TextButton(
-                    child: Text('¿No tienes una cuenta? Regístrate'),
                     onPressed: () {
                       // Aquí podrías navegar a la pantalla de registro
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => RegisterScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const RegisterScreen()));
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.white70,
                     ),
+                    child: const Text('¿No tienes una cuenta? Regístrate'),
                   ),
                 ],
               ),

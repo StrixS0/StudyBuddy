@@ -13,12 +13,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
-        IconButton(onPressed: signUserOut, icon: Icon(Icons.logout))
+        IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
       ]),
       body: Center(
         child: Text(
-          'Logged In as ' + user.email!,
-          style: TextStyle(fontSize: 20),
+          'Hola ${user.email!}',
+          style: const TextStyle(fontSize: 20),
         ),
       ),
     );
