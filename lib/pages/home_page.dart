@@ -6,7 +6,7 @@ import 'My_Asesorias.dart';
 import 'Add_Advisory.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -20,9 +20,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   final List<Widget> _widgetOptions = <Widget>[
-    const HomeScreen(),
-    const SimpleSearchInterface(),
-    const Task(),
+    HomeScreen(),
+    SimpleSearchInterface(),
+    Task(),
     AddAdvisory(),
   ];
 
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
