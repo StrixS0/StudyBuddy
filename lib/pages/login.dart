@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pia_moviles/pages/Home_Screen.dart';
+import 'package:pia_moviles/pages/home_page.dart';
 import 'package:pia_moviles/pages/register.dart';
 
 void main() => runApp(const MyApp());
@@ -35,10 +36,45 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  // Método para iniciar sesión
   void signUserIn(BuildContext context) async {
-    // ...
-    // Aquí iría la implementación de tu método signUserIn que ya has proporcionado.
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Inicio de sesión exitoso'),
+          backgroundColor: Colors.green,
+        ),
+      );
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => const HomePage()));
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      var errorMessage = 'Ocurrió un error al iniciar sesión';
+      if (e.code == 'user-not-found') {
+        errorMessage = 'No se encontró un usuario con ese email.';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Contraseña incorrecta';
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(errorMessage),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   @override
@@ -69,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 60.0),
                 Image.asset(
-                  'lib/assets/study_buddy_logo.png', // Reemplaza con la ruta correcta del logo de 'Study Buddy'
+                  'lib/assets/study_buddy_logo.png', 
                   height: 300.0,
                 ),
                 SizedBox(height: 20.0),
@@ -102,8 +138,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () => signUserIn(context),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple, // background color
-                    foregroundColor: Colors.white, // foreground color
+                    backgroundColor: Colors.deepPurple, 
+                    foregroundColor: Colors.white, 
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
