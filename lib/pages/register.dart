@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pia_moviles/pages/Home_Screen.dart';
+import 'package:pia_moviles/pages/home_page.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -90,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         });
 
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomeScreen()));
+            MaterialPageRoute(builder: (_) => const HomePage()));
       }
     } on FirebaseAuthException catch (e) {
       var errorMessage =
@@ -163,8 +164,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ElevatedButton(
                 onPressed: _registerUser,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple, // Background color
-                  foregroundColor: Colors.white, // Text color
+                  backgroundColor: Colors.deepPurple, 
+                  foregroundColor: Colors.white, 
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
