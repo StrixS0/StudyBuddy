@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'home_page.dart'; // Asegúrate de que esta ruta sea correcta para tu proyecto
+import 'package:pia_moviles/pages/Home_Screen.dart';
+// Asegúrate de que esta ruta sea correcta para tu proyecto
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  const RegisterScreen({super.key});
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -24,30 +25,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String? selectedSemestre;
 
   final List<String> carreras = [
-    "Ingeniero Administrador de Sistemas",
-    "Ingeniero Biomédico",
-    "Ingeniero en Aeronáutica",
-    "Ingeniero en Electrónica y Automatización",
-    "Ingeniero en Electrónica y Comunicaciones",
-    "Ingeniero en Manufactura",
-    "Ingeniero en Materiales",
-    "Ingeniero en Mecatrónica",
-    "Ingeniero en Tecnología de Software",
-    "Ingeniero Mecánico Administrador",
-    "Ingeniero Mecánico Electricista",
+    "IAS",
+    "IB",
+    "IAE",
+    "IEA",
+    "IEC",
+    "IMF",
+    "IMT",
+    "IMTC",
+    "ITS",
+    "IMA",
+    "IME",
   ];
 
   final List<String> semestres = [
-    '1er Semestre',
-    '2do Semestre',
-    '3er Semestre',
-    '4to Semestre',
-    '5to Semestre',
-    '6to Semestre',
-    '7mo Semestre',
-    '8vo Semestre',
-    '9no Semestre',
-    '10mo Semestre'
+    '1ero',
+    '2do ',
+    '3er ',
+    '4to ',
+    '5to ',
+    '6to ',
+    '7mo ',
+    '8vo ',
+    '9no ',
+    '10mo '
   ];
 
   @override
@@ -88,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         });
 
         Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+            .pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
       }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context); // Cierra cualquier diálogo/modal abierto

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pia_moviles/pages/Home_Screen.dart';
 import 'package:pia_moviles/pages/register.dart';
 
 void main() => runApp(const MyApp());
@@ -56,7 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
       // Aquí podrías navegar a la siguiente pantalla después de un inicio de sesión exitoso
-      // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => HomeScreen()));
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       var errorMessage = 'Ocurrió un error al iniciar sesión';
@@ -83,8 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Color.fromARGB(255, 47, 47, 47),
-              Color.fromARGB(255, 204, 204, 204)
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255)
             ],
           ),
         ),
